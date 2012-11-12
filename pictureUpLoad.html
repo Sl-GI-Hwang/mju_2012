@@ -8,24 +8,24 @@
 </head>
 <body>
 	<div id = "header">
-		<span id= "menuButton"><img src ="./imgs/menuButtonTemp.PNG" alt = "메뉴버튼(임시)" width = "30" height = "30"></span>
-		<span id = "siteName"><img src = "./imgs/siteLogoTemp.PNG" alt = "사이트 이름 그림 (임시)" width = "100" height = "30"></span>
+		<span id= "menuButton"><a href="url"><img src ="./imgs/menuButtonTemp.PNG" alt = "메뉴버튼(임시)" width = "30" height = "30"></a></span>
+		<span id = "siteName"><a href="url->main"><img src = "./imgs/siteLogoTemp.PNG" alt = "사이트 이름 그림 (임시)" width = "100" height = "30"></a></span>
 	</div>
 	<div id = "line"></div>
 	<div id = "logout">
 		<p class = "mainbutton">
-			<button class="btn-upload" type="button"> 사진 업로드 </button> <button class="btn-upload" type="button"> 로그아웃 </button>
+			<button class="btn" type="button"> 사진 업로드 </button> <button class="btn" type="button"> 로그아웃 </button>
 		</p>
 	</div><br/>
 	<div id = "explain">
 		사진을 올리는 페이지 입니다. 
 	</div>
 	<div id = "imageLoad">
-		<form action = "" method = "post">
+		<form action = "#" method = "post">
 			<p>제목 : <input type="Text" style = "width:60%"></p>
 			<p>파일 : <input type="File" style = "width:82%"></p>
-			<p><textarea cols="50" rows="10" style ="width:98%; padding = 1%" placeholder="사진에 대해" name="aboutPicture"></textarea></p> <!--  style ="width:98%; padding = 1%" 이부분 추가함   -->
-			<p><input class="btn-upload" type="Submit" style="float:right" value="사진 업로드"> <input class="btn-upload" type="Reset" style="float:right" value="취 소"></p>
+			<p><textarea cols="50" rows="10" placeholder="사진에 대해" name="aboutPicture"></textarea></p> <!--  style ="width:98%; padding = 1%" 이부분 추가함-> css파일로 옮김  -->
+			<p><input class="btn" type="Submit" style="float:right" value="사진 업로드"> <input class="btn" type="Reset" style="float:right" value="취 소"></p>
 		</form>
 	</div>
 </body>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang = "ko">
+<head>
+	<meta charset = "utf-8"/>
+	<meta meta name = "viewport" content = "width = device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<title>pictureExpand.html</title>
+	<link href="main.css" rel="stylesheet" type = "text/css">
+</head>
+<body>
+	<div id = "header">
+		<span id= "menuButton"><a href="url"><img src ="./imgs/menuButtonTemp.PNG" alt = "메뉴버튼(임시)" width = "30" height = "30"></a></span>
+		<span id = "siteName"><a href="url->main"><img src = "./imgs/siteLogoTemp.PNG" alt = "사이트 이름 그림 (임시)" width = "100" height = "30"></a></span>
+	</div>
+	<div id = "line"></div>
+	<div id = "logout">
+		<p class = "mainbutton">
+			<button class="btn" type="button"> 사진 업로드 </button> <button class="btn" type="button"> 로그아웃 </button>
+		</p>
+	</div><br/>
+	<div id = "explain">
+		클릭한 해당 사진 입니다. 
+	</div>
+	<div id = "imageExpand">
+		<p><img src ="./imgs/defaultImage.PNG" alt = "임시 디폴트 이미지"  style ="width:65%"; style="height:65%"></p>
+		<p class="pictureInfo">
+			<div style="float:left"><img src="./imgs/star.png" alt = "관심마크" width="15" height="15">INTEREST수   
+			<button class="btn-interest" type="button">관 심</button>  </div>
+			 <!--  시간이랑 거리는 소스를 찾아봐야합니다. java scrip나 jsp서야할 듯? -->
+			<div style="float:right">"시간"   <img src="./imgs/globe_af.png" alt = "지구-거리표시아이콘" width="15" height="15">"거리"</div>
+		</p>
+		<form action="#" method="post">
+		<p>댓글 : <input type="Text" placeholder="댓글 달기..." style = "width:60%"> <button class="btn" type="Submit">확인</button></p>
+		</form>
+	</div>
+	<div class="reply"></dsiv>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset = "utf-8"/>
 	<meta meta name = "viewport" content = "width = device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-	<title>pictureUpLoad.html</title>
+	<title>loginPage.html</title>
 	<link href="main.css" rel="stylesheet" type = "text/css">
 </head>
 <body>
@@ -18,15 +18,29 @@
 		</p>
 	</div><br/>
 	<div id = "explain">
-		사진을 올리는 페이지 입니다. 
+		로그인 페이지
 	</div>
-	<div id = "imageLoad">
-		<form action = "#" method = "post">
-			<p>제목 : <input type="Text" style = "width:60%"></p>
-			<p>파일 : <input type="File" style = "width:82%"></p>
-			<p><textarea cols="50" rows="10" placeholder="사진에 대해" name="aboutPicture"></textarea></p> <!--  style ="width:98%; padding = 1%" 이부분 추가함-> css파일로 옮김  -->
-			<p><input class="btn" type="Submit" style="float:right" value="사진 업로드"> <input class="btn" type="Reset" style="float:right" value="취 소"></p>
-		</form>
-	</div>
+	<form class="form-horizontal">
+	  <div class="control-group">
+	    <label class="control-label" for="inputEmail">ID</label>
+	    <div class="controls">
+	      <input type="text" id="inputEmail" placeholder="ID">
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <label class="control-label" for="inputPassword">Password</label>
+	    <div class="controls">
+	      <input type="password" id="inputPassword" placeholder="Password">
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <div class="controls">
+	      <label class="checkbox">
+	        <input type="checkbox"> Remember me
+	      </label>
+	      <button type="submit" class="btn">Sign in</button>
+	    </div>
+	  </div>
+	</form>
 </body>
 </html>

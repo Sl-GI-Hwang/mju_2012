@@ -9,6 +9,7 @@ form{ margin: 20px;}
 
 /*=================================사진 올리는 페이지=====================================================*/
 /*버튼꾸미기 DEFAULT */
+/*
 .btn{
   background-color: hsl(145, 62%, 68%) !important;
   background-repeat: repeat-x;
@@ -25,13 +26,14 @@ form{ margin: 20px;}
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.33);
   -webkit-font-smoothing: antialiased;
 }
+*/
 /*버튼 정렬*/
 p.mainbutton{float: right; margin: 5px 5px ;}
 /*header : 메뉴바 , 사이트 이름 이 있는 id*/
 #header {float: both; height : 50px; margin: 0 auto; background-image: url('./imgs/topBGimage.PNG');}
 /*menuButton : 메뉴 버튼*/
 #menuButton{float: left; padding: 10px 0px 10px 15px;}
-#siteName{float: right; padding: 10px 15px 10px 0px;}
+#siteName{float: right; padding: 12px 0px 10px 0px;}
 /**/ 
 #line { height:5px; background-image: url('./imgs/lineimage.PNG');}
 /*login : log in 버튼과 회원 가입 버튼이 있는 id*/

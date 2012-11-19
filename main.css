@@ -45,6 +45,18 @@ p.mainbutton{float: right; margin: 5px 5px ;}
 /*imageLoad : 사진 업로드하는 id*/
 #imageLoad {float: left; background-image: url('./imgs/BGimage.PNG');}
 
+/*=================================사진 정렬 CSS =====================================================*/
+#photoFilter {float:left; background-image: url('./img/BGimage.PNG');}
+p.photoFilter .style {
+  background: url() no-repeat center;
+  background-size: 100% 100%;
+  -webkit-background-size: 100% 100%;
+  width: 75px;
+  height: 75px;
+}
+i.photoFilter .hyper {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 /*=================================사진 확대된 페이지=====================================================*/
 /*관심 버튼 꾸미기*/
 .btn-interest {

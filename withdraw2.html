@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang = "ko">
+<head>
+	<meta charset = "utf-8"/>
+	<meta meta name = "viewport" content = "width = device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<title>loginPage.html</title>
+	<link href="main.css" rel="stylesheet" type = "text/css">
+</head>
+<body>
+	<div id = "header">
+		<span id= "menuButton"><a href="url"><img src ="./imgs/menuButton.png" alt = "MenuBar" width = "40" height = "40"></a></span>
+		<span id = "siteName"><a href="url->main"><img src = "./imgs/siteLogo.png" alt = "Site Logo"  width = "230"></a></span>
+	</div>
+	<div id = "line"></div>
+	<div id = "logout">
+		<p class = "mainbutton">
+			<button class="btn" type="button"> 사진 업로드 </button> <button class="btn" type="button"> 로그아웃 </button>
+		</p>
+	</div><br/>
+	<div id = "explain">
+		로그인 페이지
+	</div>
+	
+    <form class="form-horizontal">
+	 	<span id="withdraw"> 그만두는 이유(필수): </span>
+	 	<div id="reason">
+	 		<dl>
+            <dd>
+	 	<input type="radio" name="deac_reason" >
+	 	피커후드의 사용 방법을 모르겠어요
+	 		</dd>
+	 		<dd>
+	 	<input type="radio" name="deac_reason" >
+	 		개인 정보 보안이 우려됩니다.
+	 		</dd>
+            <dd>
+	 	<input type="radio" name="deac_reason" >
+	 	피커후드가 안전하지 않은 것 같습니다. 
+	 		</dd>
+	 	<input type="radio" name="deac_reason" >
+	 	피커후드에 너무 많은 시간을 허비하고 있습니다. 
+	 		<dd>
+	 	<input type="radio" name="deac_reason" >
+	 	다른 피커후드 계정이 있습니다. 
+	 		</dd>
+	 		</dl>
+     </div>
+     
+	    <div class="controls">
+        
+	      <input type="button" name="withdraw" id="withdraw" value="탈퇴">
+	      <input type="button" name="cancel" id="cancel" value="취소">
+	    </div>
+	  
+	</form>
+</body>
+</html>

@@ -25,8 +25,18 @@
 	  List<String> errorMsgs = new ArrayList<String>();
 	  int result = 0;
 	  // Request로 ID가 있는지 확인
+	  
+	if (userid == null || userid.trim().length() == 0) {
+		errorMsgs.add("ID를 반드시 입력해주세요.");
+		
+	}
+	
+	if (pwd == null || pwd.length() < 6) {
+		errorMsgs.add("비밀번호는 6자 이상 입력해주세요.");
+	} 
+	
 	try{
-			Class.forName("com.mysql.jdbc.Driver");
+		  Class.forName("com.mysql.jdbc.Driver");
 	      // DB 접속
 	      conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
 	      // 질의 준비
@@ -41,8 +51,10 @@
 	        dbname = rs.getString("name");
 	        dbpwd = rs.getString("pwd");
 	     		
-	     		result = 1;
-	     		
+	     	result = 1;
+	     	session.setAttribute("userid", dbuserid);
+	     	session.setAttribute("name", dbname);
+	     	
 	      }else{
    			errorMsg = "로그인 실패";
    		 }
@@ -71,14 +83,18 @@
 <body>
 <div class = "header">
 	<span class= "menuButton"><a href="url"><img src ="imgs/menuButton.png" alt = "MenuBar"></a></span>
-	<span class = "siteName"><a href="url->main"><img src = "imgs/SiteLogo.png" alt = "Site Logo"></a></span>
+	<span class = "siteName"><a href="mainPage.jsp"><img src = "imgs/SiteLogo.png" alt = "Site Logo"></a></span>
 </div>
 <div class = "line"></div>
 	<%
  if (errorMsg != null && errorMsg.length() > 0 ) {
     // SQL 에러의 경우 에러 메시지 출력
-    out.print("<div class='alert'>" + errorMsg + "</div>");
- } else if (result == 1){
+    out.print("<div class='alert'>" + errorMsg + "</div>");%>
+    <div class="form-action">
+		<a href="userManage.jsp" class="btn">목록으로</a>
+	</div>
+<% 
+ } else if (result == 1){ 
  %>
 		 	<div class="form-action">
 		 		<a onclick="history.back();" class="btn">뒤로 돌아가기</a>
@@ -87,7 +103,7 @@
 	 			<b><%= dbname %></b>님 환영합니다.
 	 		</div>
 		 	<div class="form-action">
-		 		<a href="userManage.jsp" class="btn">목록으로</a>
+		 		<a href="mainPage.jsp" class="btn">HOME</a>
 		 	</div>
 	 		
 <%}%>

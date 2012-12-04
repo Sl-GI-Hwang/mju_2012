@@ -15,3 +15,17 @@ CREATE TABLE users (
 );
 
 INSERT INTO users VALUES (1, 'hyejung2', 'hyejung jang', '12345', 'hyejung-s@nate.com', 'F');
+
+
+CREATE TABLE picture (
+	pictureID INT AUTO_INCREMENT PRIMARY KEY, 
+	uploadDate DATETIME,
+	title VARCHAR(100) not null,
+	content TEXT,
+	userid VARCHAR(15) NOT NULL,
+	FOREIGN KEY(userid) REFERENCES users(userid)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+);
+
+

@@ -25,6 +25,7 @@
 
 
   // Request로 ID가 있는지 확인
+
   int id = 0;
   try {
     id = Integer.parseInt(request.getParameter("id"));
@@ -60,9 +61,8 @@
       if (conn != null) try{conn.close();} catch(SQLException e) {}
     }
   } else {
-    errorMsg = "ID가 지정되지 않았습니다.";
-  }
-%>    
+    errorMsg = "로그인이 필요한 페이지 입니다.";
+}%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,7 +78,7 @@
 <body>
 <div class = "header">
 	<span class= "menuButton"><a href="url"><img src ="imgs/menuButton.png" alt = "MenuBar"></a></span>
-	<span class = "siteName"><a href="url->main"><img src = "imgs/SiteLogo.png" alt = "Site Logo"></a></span>
+	<span class = "siteName"><a href="mainPage.jsp"><img src = "imgs/SiteLogo.png" alt = "Site Logo"></a></span>
 </div>
 
 	<div id = "explain">
@@ -108,7 +108,7 @@
 <% } %>
   
 	  <div class="form-actions">
-	    <a href="userManage.jsp" class="btn">목록으로</a>
+	    <a href="mainPage.jsp" class="btn">홈으로</a>
 	    <% if (id > 0) { %>
   	    <a href="signup.jsp?id=<%=id %>" class="btn btn-primary">수정</a>
 	     <a href="#" class="btn btn-danger" data-action="delete" data-id="<%=id %>" >삭제</a>

@@ -78,9 +78,8 @@
 <body>
 <div class = "header">
 	<span class= "menuButton"><a href="url"><img src ="imgs/menuButton.png" alt = "MenuBar"></a></span>
-	<span class = "siteName"><a href="url->main"><img src = "imgs/SiteLogo.png" alt = "Site Logo"></a></span>
+	<span class = "siteName"><a href="mainPage.jsp"><img src = "imgs/SiteLogo.png" alt = "Site Logo"></a></span>
 </div>
-
 	<div id = "explain">
 		회원 등록
 	</div>
@@ -146,7 +145,7 @@
 				</div>
 
 				<div class="form-actions">
-					<a href="userManage.jsp" class="btn">목록으로</a>
+					<a href="mainPage.jsp" class="btn">목록으로</a>
 					<% if (id <= 0) { %>
 						<input type="submit" class="btn btn-primary" value="가입"/>
 						<input type="reset" class="btn btn-danger" value="입력 취소"/>

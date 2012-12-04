@@ -2,10 +2,12 @@
     pageEncoding="UTF-8" import="java.util.*"  import="java.sql.*" 
     import="org.apache.commons.lang3.StringUtils"%>
 <%
-
-//DB 접속을 위한 준비
 	String sessionID = (String)session.getAttribute("userid");
-	//int sessID = session.getAttribute("id");
+	int sessID = 0;
+	if(session.getAttribute("id") != null){
+		sessID = (Integer)session.getAttribute("id");
+	}
+//DB 접속을 위한 준비
 %>
 <!DOCTYPE html>
 <html>
@@ -27,7 +29,7 @@
   			<ul class="dropdown-menu">
     			<li><a href="#">MY PAGE</a></li>
     			<li class="divider"></li>
-    			<li><a href="#">개인 정보</a></li>
+    			<li><a href="userShow.jsp?id=<%=sessID%>">개인 정보</a></li>
     			<li><a href="#">위치 설정</a></li>
     			<li><a href="#">사진 관리</a></li>
     			<li><a href="#">이웃 관리</a></li>
@@ -38,21 +40,20 @@
     			<li><a href="#">주위 사진</a></li>
     			<li class="divider"></li>
     			<li><a href="#">이웃 사진</a></li>
-    			<li class="divider"></li>
+    			<li class="divider"></li>    			
   			</ul>
 	</div>
-	
 	<div class = "siteName" style=float:right><a href="mainPage.jsp"><img src = "imgs/SiteLogo.png" alt = "Site Logo"></a></div>
 </div>
 <div id = "login">
 		<p class = "mainbutton">
 			<a href="pictureUploadPage.jsp" class="btn" type="button"> 사진 업로드 </a> 
 			<% if(sessionID == null){ %>
-			<a href="loginPage.jsp"><button class="btn" type="button"> 로그인 </button></a>
+				<a href="loginPage.jsp"><button class="btn" type="button"> 로그인 </button></a>
 			<% } else {%>
-			<a href="logout.jsp"><button class="btn" type="button"> 로그아웃 </button></a>
+				<a href="logout.jsp"><button class="btn" type="button"> 로그아웃 </button></a>
 			<% }%>
 		</p>
-	</div>
+</div>
 </body>
 </html>

@@ -23,6 +23,7 @@
   String email = "";
   String gender = "";
 
+  
 
   // Request로 ID가 있는지 확인
 
@@ -30,7 +31,7 @@
   try {
     id = Integer.parseInt(request.getParameter("id"));
   } catch (Exception e) {}
-
+	
   if (id > 0) {
     try {
         Class.forName("com.mysql.jdbc.Driver");
@@ -55,7 +56,7 @@
     }catch (SQLException e) {
       errorMsg = "SQL 에러: " + e.getMessage();
     } finally {
-      // 무슨 일이 있어도 리소스를 제대로 종료
+      // 무슨 일이 있어도 리소스를 제대로 종료s
       if (rs != null) try{rs.close();} catch(SQLException e) {}
       if (stmt != null) try{stmt.close();} catch(SQLException e) {}
       if (conn != null) try{conn.close();} catch(SQLException e) {}

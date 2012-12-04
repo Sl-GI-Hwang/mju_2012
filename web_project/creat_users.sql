@@ -1,6 +1,6 @@
 CREATE DATABASE picorhood DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 
-GRANT ALL ON picorhood.* TO 'web'@'localhost' IDENTIFIED BY 'project';
+GRANT ALL ON picorhood.* TO 'web' IDENTIFIED BY 'project';
 
 use picorhood;
 
@@ -14,7 +14,7 @@ CREATE TABLE users (
 	gender CHAR(1) NOT NULL
 );
 
-INSERT INTO users VALUES (1, 'hyejung2', 'hyejung jang', '12345', 'hyejung-s@nate.com', 'F');
+INSERT INTO users VALUES (1, 'Manager4', 'hyejung jang', '159357', 'hyejung-s@nate.com', 'F');
 
 
 CREATE TABLE picture (

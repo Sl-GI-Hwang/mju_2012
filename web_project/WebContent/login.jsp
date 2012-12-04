@@ -18,6 +18,7 @@
 	
 	
 	 // 사용자 정보를 위한 변수 초기화
+	  int dbid = 0;
 	  String dbuserid = "";
 	  String dbname = "";
 	  String dbpwd = "";
@@ -47,11 +48,13 @@
 	      rs = stmt.executeQuery();
 	      //System.out.println(rs);
 	      if (rs.next()) {
+	    	dbid = rs.getInt("id");
 	        dbuserid = rs.getString("userid");
 	        dbname = rs.getString("name");
 	        dbpwd = rs.getString("pwd");
 	     		
 	     	result = 1;
+	     	session.setAttribute("id", dbid);
 	     	session.setAttribute("userid", dbuserid);
 	     	session.setAttribute("name", dbname);
 	     	

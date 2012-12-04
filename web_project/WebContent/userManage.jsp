@@ -24,10 +24,8 @@
 	int numItems, numPages;
 	
 	String sessionID=null;
-	if(session == null){
+	if(session.getAttribute("userid") == null){
 		sessionID = (String)session.getAttribute("userid");
-	}else{
-		sessionID=null;
 	}
 
 %>    
@@ -47,7 +45,7 @@
 	<span class= "menuButton"><a href="url"><img src ="imgs/menuButton.png" alt = "MenuBar"></a></span>
 	<span class = "siteName"><a href="mainPage.jsp"><img src = "imgs/SiteLogo.png" alt = "Site Logo"></a></span>
 </div>
-<%if(!(sessionID.equals("hyejung2")) || (sessionID == null)){ %>
+<%if((sessionID == null) || !(sessionID.equals("Manager4"))){ %>
 	<div class="alert alert-error">
  		<ul>
  			<li>접근 권한이 없습니다.</li>
@@ -180,9 +178,7 @@
 			<div class="form-action">
 				<a href="signup.jsp" class="btn btn-primary">Sign Up</a>
 			</div>	 	
-<%} %>
-	</body>
-	<script>
+				<script>
 	$(function{
 		$("a[data-action='delete']").click(function() {
 			if (confirm("정말로 삭제하시겠습니까?")) {
@@ -192,4 +188,6 @@
 		});
 	});
 	</script>
+<%} %>
+	</body>
 </html>

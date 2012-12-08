@@ -16,7 +16,6 @@ CREATE TABLE users (
 
 INSERT INTO users VALUES (1, 'Manager4', 'hyejung jang', '159357', 'hyejung-s@nate.com', 'F');
 
-
 CREATE TABLE picture (
 	pictureID INT AUTO_INCREMENT PRIMARY KEY, 
 	Date DATETIME,
@@ -25,6 +24,20 @@ CREATE TABLE picture (
 	pictureName VARCHAR(100),
 	userid VARCHAR(15) NOT NULL,
 	FOREIGN KEY(userid) REFERENCES users(userid)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+);
+
+CREATE TABLE comment (
+	commentID INT AUTO_INCREMENT PRIMARY KEY, 
+	Date DATETIME,
+	Text TEXT not null,
+	userid VARCHAR(15) NOT NULL,
+	FOREIGN KEY(userid) REFERENCES users(userid)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	pictureID INT NOT NULL,
+	FOREIGN KEY(pictureID) REFERENCES picture(pictureID)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );

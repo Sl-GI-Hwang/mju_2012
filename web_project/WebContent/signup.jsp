@@ -62,6 +62,11 @@
 	} else {
 		actionUrl = "register.jsp";
 	}
+	
+	int sessID = 0;
+	if(session.getAttribute("id") != null){
+		sessID = (Integer)session.getAttribute("id");
+	}
 %>        
 <!DOCTYPE html>
 <html>
@@ -77,7 +82,28 @@
 </head>
 <body>
 <div class = "header">
-	<span class= "menuButton"><a href="url"><img src ="imgs/menuButton.png" alt = "MenuBar"></a></span>
+	<div class = "btn-group" style=float:left>
+ 		 <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#">
+   			<img src ="imgs/menuButton.png" width="30" height="30" alt = "MenuBar">
+  		 </a>
+  			<ul class="dropdown-menu">
+    			<li><a href="#">MY PAGE</a></li>
+    			<li class="divider"></li>
+    			<li><a href="userShow.jsp?id=<%=sessID%>">개인 정보</a></li>
+    			<li><a href="#">위치 설정</a></li>
+    			<li><a href="#">사진 관리</a></li>
+    			<li><a href="#">이웃 관리</a></li>
+    			<li><a href="#">회워 탈퇴</a></li>
+    			<li class="divider"></li>
+    			<li><a href="#">관심 위치 사진</a></li>
+    			<li class="divider"></li>
+    			<li><a href="#">주위 사진</a></li>
+    			<li class="divider"></li>
+    			<li><a href="#">이웃 사진</a></li>
+    			<li class="divider"></li> 
+    			<li><a href="userManage.jsp">회원 관리 페이지</a></li>   			
+  			</ul>
+	</div>
 	<span class = "siteName"><a href="mainPage.jsp"><img src = "imgs/SiteLogo.png" alt = "Site Logo"></a></span>
 </div>
 	<div id = "explain">
@@ -95,7 +121,12 @@
 				<div class="control-group">
 					<label class="control-label" for="userid">ID</label>					
 					<div class="controls">
+					<%if(id>0){ %>
+					<label class="control-label" for="userid"><%=userid%></label>
+					<input type="text" name="userid" style="visibility:hidden" value="<%=userid%>"/>
+					<%} else{ %>
 						<input type="text" name="userid" value="<%=userid%>">
+						<% }%>
 					</div>
 				</div>
 
@@ -106,7 +137,6 @@
 					</div>
 				</div>
 
-				<% if (id <= 0) { %>
 					<%-- 신규 가입일 때만 비밀번호 입력창을 나타냄 --%>
 					<div class="control-group">
 						<label class="control-label" for="pwd">Password</label>
@@ -121,7 +151,6 @@
 							<input type="password" name="pwd_confirm">
 						</div>
 					</div>
-				<% } %>
 					
 				<div class="control-group">
 					<label class="control-label" for="email">E-mail</label>

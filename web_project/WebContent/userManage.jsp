@@ -24,7 +24,7 @@
 	int numItems, numPages;
 	
 	String sessionID=null;
-	if(session.getAttribute("userid") == null){
+	if(session.getAttribute("userid") != null){
 		sessionID = (String)session.getAttribute("userid");
 	}
 
@@ -45,16 +45,7 @@
 	<span class= "menuButton"><a href="url"><img src ="imgs/menuButton.png" alt = "MenuBar"></a></span>
 	<span class = "siteName"><a href="mainPage.jsp"><img src = "imgs/SiteLogo.png" alt = "Site Logo"></a></span>
 </div>
-<%if((sessionID == null) || !(sessionID.equals("Manager4"))){ %>
-	<div class="alert alert-error">
- 		<ul>
- 			<li>접근 권한이 없습니다.</li>
- 		</ul>
- 	</div>		
- 	<div class="form-action">
-		 		<a onclick="history.back();" class="btn">뒤로 돌아가기</a>
-	</div>
-<%} else{ %>
+<%if(sessionID.equals("Manager4")){ %>
 		<div id = "explain">
 			회원 정보 관리 
 		</div>
@@ -178,16 +169,28 @@
 			<div class="form-action">
 				<a href="signup.jsp" class="btn btn-primary">Sign Up</a>
 			</div>	 	
-				<script>
-	$(function{
-		$("a[data-action='delete']").click(function() {
-			if (confirm("정말로 삭제하시겠습니까?")) {
-				location = 'delete.jsp?id=' + $(this).attr('data-id');
-			}
-			return false;
-		});
-	});
-	</script>
+			<script>
+				$(function{
+					$("a[data-action='delete']").click(function() {
+						if (confirm("정말로 삭제하시겠습니까?")) {
+							location = 'delete.jsp?id=' + $(this).attr('data-id');
+						}
+						return false;
+					});
+				});
+			</script>
+<%} else{ %>
+
+	<div class="alert alert-error">
+ 		<ul>
+ 			<li>접근 권한이 없습니다.</li>
+ 		</ul>
+ 	</div>		
+ 	<div class="form-action">
+		 		<a onclick="history.back();" class="btn">뒤로 돌아가기</a>
+	</div>
+	
+	
 <%} %>
 	</body>
 </html>

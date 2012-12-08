@@ -19,9 +19,10 @@ INSERT INTO users VALUES (1, 'Manager4', 'hyejung jang', '159357', 'hyejung-s@na
 
 CREATE TABLE picture (
 	pictureID INT AUTO_INCREMENT PRIMARY KEY, 
-	uploadDate DATETIME,
-	title VARCHAR(100) not null,
-	content TEXT,
+	Date DATETIME,
+	Title VARCHAR(100) not null,
+	Text TEXT,
+	pictureName VARCHAR(100),
 	userid VARCHAR(15) NOT NULL,
 	FOREIGN KEY(userid) REFERENCES users(userid)
 	ON DELETE CASCADE

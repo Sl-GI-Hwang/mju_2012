@@ -7,6 +7,17 @@
 	if(session.getAttribute("id") != null){
 		sessID = (Integer)session.getAttribute("id");
 	}
+	
+	Connection conn = null;
+	Statement stmt = null;
+	ResultSet rs = null;
+	
+	String dbUrl = "jdbc:mysql://localhost:3306/picorhood";
+	String dbUser = "web";
+	String dbPassword = "project";
+	
+	
+	
 //DB 접속을 위한 준비
 %>
 <!DOCTYPE html>
@@ -40,9 +51,11 @@
     			<li><a href="#">주위 사진</a></li>
     			<li class="divider"></li>
     			<li><a href="#">이웃 사진</a></li>
-    			<li class="divider"></li>    			
+    			<li class="divider"></li> 
+    			<li><a href="userManage.jsp">회원 관리 페이지</a></li>   			
   			</ul>
 	</div>
+	
 	<div class = "siteName" style=float:right><a href="mainPage.jsp"><img src = "imgs/SiteLogo.png" alt = "Site Logo"></a></div>
 </div>
 <div id = "login">
@@ -55,5 +68,39 @@
 			<% }%>
 		</p>
 </div>
+<br/>
+<%
+	 	try {
+		    Class.forName("com.mysql.jdbc.Driver");
+	
+		    // DB 접속
+			conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM picture ORDER BY pictureid");
+			
+%>
+<div class = "row-fluid" style="float:clear">
+	<ul class ="thumbnalils">
+		<%while(rs.next()){ %>
+			<li class="span3"><a href="pictureExpand.jsp?pictureid=<%=rs.getInt("pictureid") %>" class="thumbnail">
+			<img src="imgFile/<%=rs.getString("pictureName") %>" alt="사진"></a></li>
+		<%} %>
+	</ul>
+</div>
+
+<%
+
+	 	} catch (SQLException e) {
+			// SQL 에러의 경우 에러 메시지 출력
+			out.print("<div class='alert'>" + e.getLocalizedMessage() + "</div>");
+		}finally {
+			// 무슨 일이 있어도 리소스를 제대로 종료
+			if (rs != null) try{rs.close();} catch(SQLException e) {}
+			if (stmt != null) try{stmt.close();} catch(SQLException e) {}
+			if (conn != null) try{conn.close();} catch(SQLException e) {}
+		}
+
+%>
+
 </body>
 </html>

@@ -20,6 +20,8 @@
 	} catch (Exception e) {}
 	String userid = request.getParameter("userid");
 	String name = request.getParameter("name");
+	String pwd = request.getParameter("pwd");
+	String pwd_confirm = request.getParameter("pwd_confirm");
 	String email = request.getParameter("email");
 	String gender = request.getParameter("gender");
 	
@@ -33,21 +35,31 @@
 	if (gender == null || !(gender.equals("M") || gender.equals("F") )) {
 		errorMsgs.add("성별에 적합하지 않은 값이 입력되었습니다.");
 	}
-
+	
+	if (pwd == null || pwd.length() < 6) {
+		errorMsgs.add("비밀번호는 6자 이상 입력해주세요.");
+	} 	
+	
+	if (!pwd.equals(pwd_confirm)) {
+		errorMsgs.add("비밀번호가 일치하지 않습니다.");
+	}
+	
+System.out.println(id);
 	if (errorMsgs.size() == 0) {
 		try {
 			conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
 			stmt = conn.prepareStatement(
 					"UPDATE users " +
-					"SET  userid=?, name=?, email=?,  gender=?" +
-					"WHERE id=?"
+					"SET  name=?, pwd=?, email=?, gender=?" +
+					"WHERE userid=?"
 					);
-			stmt.setString(1,  userid);
-			stmt.setString(2,  name);
+			stmt.setString(1,  name);
+			stmt.setString(2,  pwd);
 			stmt.setString(3,  email);
 			stmt.setString(4,  gender);
-			stmt.setInt(5,  id);
+			stmt.setString(5,  userid);
 			
+			System.out.println(stmt);
 			result = stmt.executeUpdate();
 			if (result != 1) {
 				errorMsgs.add("변경에 실패하였습니다.");
@@ -99,7 +111,7 @@
 	 			<b><%= name %></b>님 정보가 수정되었습니다.
 	 		</div>
 		 	<div class="form-action">
-		 		<a href="userManage.jsp" class="btn">목록으로</a>
+		 		<a href="mainPage.jsp" class="btn">목록으로</a>
 		 	</div>
 <%}%>
 </body>

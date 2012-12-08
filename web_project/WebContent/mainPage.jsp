@@ -76,7 +76,7 @@
 		    // DB 접속
 			conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM picture ORDER BY pictureid");
+			rs = stmt.executeQuery("SELECT * FROM picture ORDER BY pictureid DESC");
 			
 %>
 <div class = "row-fluid" style="float:clear">

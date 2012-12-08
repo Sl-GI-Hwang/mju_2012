@@ -79,8 +79,8 @@
 			rs = stmt.executeQuery("SELECT * FROM picture ORDER BY pictureid DESC");
 			
 %>
-<div class = "row-fluid" style="float:clear">
-	<ul class ="thumbnalils">
+<div id = "photoFilter">
+	<ul style="list-style-type:none" class ="thumbnalils">
 		<%while(rs.next()){ %>
 			<li class="span3"><a href="pictureExpand.jsp?pictureid=<%=rs.getInt("pictureid") %>" class="thumbnail">
 			<img src="imgFile/<%=rs.getString("pictureName") %>" alt="사진"></a></li>

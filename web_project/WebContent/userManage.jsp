@@ -1,39 +1,97 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*"  import="java.sql.*"
+    pageEncoding="UTF-8"  import="java.sql.*" import="java.util.*" 
     import="org.apache.commons.lang3.StringUtils"%>
-<% 
-// DB 접속을 위한 준비
-	
+<%
+String[][] genders = {{"M", "남성"}, {"F", "여성"}};
+
+	// DB 접속을 위한 준비
 	Connection conn = null;
-	Statement stmt = null;
+	PreparedStatement stmt = null;
 	ResultSet rs = null;
 	
 	String dbUrl = "jdbc:mysql://localhost:3306/picorhood";
 	String dbUser = "web";
 	String dbPassword = "project";
 	
-	// 페이지 설정
-	int pageNo = 1;
+	request.setCharacterEncoding("utf-8");
+	String userid = request.getParameter("userid");
+	String pwd = request.getParameter("pwd");
+	String pwd_confirm = request.getParameter("pwd_confirm");
+	String name = request.getParameter("name");
+	String email = request.getParameter("email");
+	String gender = request.getParameter("gender");
 	
-	try {
-		pageNo = Integer.parseInt(request.getParameter("page"));
-	} catch (NumberFormatException ex) {}
+	List<String> errorMsgs = new ArrayList<String>();
+	int result = 0;
 	
-	int numInPage = 10;												// 한페이지에 출력할 아이템 개수
-	int startPos = (pageNo - 1) * numInPage; 	// 몇 번째 아이템 부터 이 페이지에?
-	int numItems, numPages;
-	
-	String sessionID=null;
-	if(session.getAttribute("userid") != null){
-		sessionID = (String)session.getAttribute("userid");
+	if (userid == null || userid.trim().length() == 0) {
+		errorMsgs.add("ID를 반드시 입력해주세요.");
+	} else{	
+		try {
+			 Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+			stmt = conn.prepareStatement("SELECT userid FROM users WHERE userid = ?");
+			stmt.setString(1, userid);
+			rs = stmt.executeQuery();
+			if(rs.next()){
+				errorMsgs.add("중복된 ID입니다.");
+			}
+		} catch (SQLException e) {
+			errorMsgs.add("SQL 에러: " + e.getMessage());
+		} finally {
+			// 무슨 일이 있어도 리소스를 제대로 종료
+			if (rs != null) try{rs.close();} catch(SQLException e) {}
+			if (stmt != null) try{stmt.close();} catch(SQLException e) {}
+			if (conn != null) try{conn.close();} catch(SQLException e) {}
+		}
 	}
-
+	
+		
+	if (pwd == null || pwd.length() < 6) {
+			errorMsgs.add("비밀번호는 6자 이상 입력해주세요.");
+	} 	
+	
+	if (!pwd.equals(pwd_confirm)) {
+		errorMsgs.add("비밀번호가 일치하지 않습니다.");
+	}
+	
+	if (name == null || name.trim().length() == 0) {
+		errorMsgs.add("이름을 반드시 입력해주세요.");
+	}
+	if (errorMsgs.size() == 0) {
+		try {
+			 Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+			stmt = conn.prepareStatement(
+					"INSERT INTO users(userid, name, pwd, email, gender) " +
+					"VALUES(?, ?, ?, ?, ?)"
+					);
+			stmt.setString(1,  userid);
+			stmt.setString(2,  name);
+			stmt.setString(3,  pwd);
+			stmt.setString(4,  email);
+			stmt.setString(5,  gender);
+					
+			result = stmt.executeUpdate();
+			if (result != 1) {
+				errorMsgs.add("등록에 실패하였습니다.");
+			}
+		} catch (SQLException e) {
+			errorMsgs.add("SQL 에러: " + e.getMessage());
+		} finally {
+			// 무슨 일이 있어도 리소스를 제대로 종료
+			if (rs != null) try{rs.close();} catch(SQLException e) {}
+			if (stmt != null) try{stmt.close();} catch(SQLException e) {}
+			if (conn != null) try{conn.close();} catch(SQLException e) {}
+		}
+	}
+	
 %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 관리</title>
+<title>회원등록</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/base.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
@@ -45,152 +103,88 @@
 	<span class= "menuButton"><a href="url"><img src ="imgs/menuButton.png" alt = "MenuBar"></a></span>
 	<span class = "siteName"><a href="mainPage.jsp"><img src = "imgs/SiteLogo.png" alt = "Site Logo"></a></span>
 </div>
-<%if(sessionID.equals("Manager4")){ %>
-		<div id = "explain">
-			회원 정보 관리 
-		</div>
-		
-		 	<%
-	 	try {
-		    Class.forName("com.mysql.jdbc.Driver");
-	
-		    // DB 접속
-			conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
-	 		
-			stmt = conn.createStatement();
-			
-			// users 테이블: user 수 페이지수 개산
-	 		rs = stmt.executeQuery("SELECT COUNT(*) FROM users");
-			rs.next();
-			numItems = rs.getInt(1);
-			numPages = (int) Math.ceil((double)numItems / (double)numInPage);
-			rs.close();
-			stmt.close();
-			
-	 		// users 테이블 SELECT
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM users ORDER BY name LIMIT " + startPos + ", " + numInPage);
-			String gender;
-	 	%>
-	 		<div class="row">
-				<div class="span12 page-info">
-					<div class="pull-left">
-						Total <b><%=numItems %></b> users 
-					</div>
-					<div class="pull-right">
-						<b><%= pageNo%></b> page / total <b><%= numPages %></b> pages
-					</div>
-	 			</div>
-	 		</div>
-			<table class="table table-bordered table-stripped">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Name</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-				<%
-					while(rs.next()) {
-				%>
-					<tr>
-						<td><a href="userShow.jsp?id=<%=rs.getInt("id")%>"><%=rs.getString("userid") %></a></td>
-						<td><%=rs.getString("name") %></td>
-						<td>
-							<a href="signup.jsp?id=<%=rs.getInt("id")%>" class="btn btn-mini">modify</a>
-							<a href="#" class="btn btn-mini btn-danger" data-action="delete" data-id="<%=rs.getInt("id") %>" >delete</a>
-						</td>
-					</tr>
-					<%
-					}
-				%>
-				</tbody>
-			</table> 
-	
-	
-		<div class="pagination pagination-centered">
-	      <ul>
-	      	<%
-	      	// 페이지 네비게이션을 위한 준비
-	      	int startPageNo, endPageNo;
-	      	int delta = 5;
-	      	startPageNo = (pageNo <= delta) ? 1: pageNo - delta;
-	      	endPageNo = startPageNo + (delta * 2) + 1;
-	      	
-	      	if (endPageNo > numPages) {
-	      		endPageNo = numPages;
-	      	}
-	      	
-	      	// 이전 페이지로
-	      	if (pageNo <= 1) { 
-	      	%>
-	        	<li class="disabled"><a href="#">&laquo;</a></li>
-	        <% 
-	      	} else {
-	        %>
-	        	<li><a href="index.jsp?page=<%= pageNo - 1%>">&laquo;</a></li>
-	        <%
-	        } 
-	      	
-	      	// 페이지 목록 출력 (현재-delta ~ 현재+delta까지)
-	        String className = "";
-	        for(int i = startPageNo; i <= endPageNo; i++) {
-	        	className = (i == pageNo) ? "active" : "";
-	        	out.println("<li class='" + className + "'>");
-	        	out.println("<a href='index.jsp?page=" + i + "'>" + i + "</a>");
-	        	out.println("</li>");
-	        }
-	        
-	        // 다음 페이지로
-	      	if (pageNo >= numPages) { 
-	      	%>
-	        	<li class="disabled"><a href="#">&raquo;</a></li>
-	        <% 
-	      	} else {
-	        %>
-	        	<li><a href="index.jsp?page=<%= pageNo + 1%>">&raquo;</a></li>
-	        <%
-	        } 
-	        %>
-	     </ul>
-	    </div>
-			<%
-			} catch (SQLException e) {
-				// SQL 에러의 경우 에러 메시지 출력
-				out.print("<div class='alert'>" + e.getLocalizedMessage() + "</div>");
-			}finally {
-				// 무슨 일이 있어도 리소스를 제대로 종료
-				if (rs != null) try{rs.close();} catch(SQLException e) {}
-				if (stmt != null) try{stmt.close();} catch(SQLException e) {}
-				if (conn != null) try{conn.close();} catch(SQLException e) {}
-			}
-			%>
-			<div class="form-action">
-				<a href="signup.jsp" class="btn btn-primary">Sign Up</a>
-			</div>	 	
-			<script>
-				$(function{
-					$("a[data-action='delete']").click(function() {
-						if (confirm("정말로 삭제하시겠습니까?")) {
-							location = 'delete.jsp?id=' + $(this).attr('data-id');
-						}
-						return false;
-					});
-				});
-			</script>
-<%} else{ %>
+<div id = "explain">
+	회원 등록
+</div>
+	<% if (errorMsgs.size() > 0) { %>
+			<div class="alert alert-error">
+ 				<ul>
+ 					<% for(String msg: errorMsgs) { %>
+ 						<li><%=msg %></li>
+ 					<% } %>
+ 				</ul>
+ 			</div>
 
-	<div class="alert alert-error">
- 		<ul>
- 			<li>접근 권한이 없습니다.</li>
- 		</ul>
- 	</div>		
- 	<div class="form-action">
-		 		<a onclick="history.back();" class="btn">뒤로 돌아가기</a>
-	</div>
+ 			 <form class="form-horizontal" action="signup.jsp" method="post">
+				<div class="control-group">
+					<label class="control-label" for="userid">ID</label>					
+					<div class="controls">
+						<input type="text" name="userid" value="<%=userid%>">
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="name">Name</label>
+					<div class="controls">
+						<input type="text" placeholder="홍길동" name="name" value="<%=name%>">
+					</div>
+				</div>
+
+					<div class="control-group">
+						<label class="control-label" for="pwd">Password</label>
+						<div class="controls">
+							<input type="password" name="pwd">
+							
+						</div>
+					</div>
 	
+					<div class="control-group">
+						<label class="control-label" for="pwd_confirm">Password Confirmation</label>
+						<div class="controls">
+							<input type="password" name="pwd_confirm">
+						</div>
+					</div>
+			
+					
+				<div class="control-group">
+					<label class="control-label" for="email">E-mail</label>
+					<div class="controls">
+						<input type="email" placeholder="hong@abc.com" name="email" value="<%=email%>">
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label">Gender</label>
+					<div class="controls">
+						<% for(String[] genderOption : genders) { %> 
+							<label class="radio"> 
+							  <input type="radio" value="<%=genderOption[0] %>" name="gender"
+							  <% if (genderOption[0].equals(gender)) { out.print("checked");} %>
+							  > 
+							  <%=genderOption[1] %>
+							</label>
+						<% } %> 
+					</div>
+				</div>
+
+				<div class="form-actions">
+					<a href="loginPage.jsp" class="btn">목록으로</a>
+					
+						<input type="submit" class="btn btn-primary" value="가입"/>
+						<input type="reset" class="btn btn-danger" value="입력 취소"/>
+
+				</div>
+		  </form>
+ 			
+	 	<% } else if (result == 1) { %>
+	 		<div class="alert alert-success">
+	 			<b><%= name %></b>님 등록해주셔서 감사합니다.
+	 		</div>
+		 	<div class="form-action">
+		 		<a href="userManage.jsp" class="btn">목록으로</a>
+		 	</div>
+	 		
+	 	<%}%>
 	
-<%} %>
-	</body>
+</body>
 </html>

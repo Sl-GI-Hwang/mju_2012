@@ -4,18 +4,12 @@
 <%
   
   String errorMsg = null;
-
-  String actionUrl;
-  // DB 접속을 위한 준비
   Connection conn = null;
   PreparedStatement stmt = null;
   ResultSet rs = null;
-    
-  // 사용자 정보를 위한 변수 초기화
-  String name = "";
-  String title = "";
-  String content = "";
-
+  
+  
+  String actionUrl;
   // Request로 ID가 있는지 확인
   int id = 0;
   try {
@@ -38,9 +32,6 @@
       rs = stmt.executeQuery();
       
       if (rs.next()) {
-        name = rs.getString("name");
-        title = rs.getString("title");
-        content = rs.getString("content");
       }
     }catch (SQLException e) {
       errorMsg = "SQL 에러: " + e.getMessage();

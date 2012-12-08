@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang = "ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport"
+	content="width = device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>pictureUpLoad.html</title>
+<link href="main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="header">
+		<span id="menuButton"><a href="url"><img
+				src="./imgs/menuButton.png" alt="MenuBar" width="40" height="40"></a></span>
+		<span id="siteName"><a href="url->main"><img
+				src="./imgs/siteLogo.png" alt="Site Logo" height="41"></a></span>
+	</div>
+	<div id="line"></div>
+	<div id="logout">
+		<p class="mainbutton">
+			<button class="btn" type="button">사진 업로드</button>
+			<button class="btn" type="button">로그아웃</button>
+		</p>
+	</div>
+	<br />
+	<div id="explain">사진을 올리는 페이지 입니다.</div>
+	<div id="imageLoad">
+		<form action= "subscription.jsp" enctype="multipart/form-data" method="post">
+			<p>
+				제목 : <input type="Text" name = "Title" style="width: 60%">
+			</p>
+			<p>
+				파일 : <input type="File" name = "file" style="width: 82%">
+			</p>
+			<p>
+				<textarea cols="50" rows="10" name = "Text" placeholder="사진에 대해"
+					name="aboutPicture"></textarea>
+			</p>
+			<!--  style ="width:98%; padding = 1%" 이부분 추가함-> css파일로 옮김  -->
+			<p>
+				<input class="btn" type="Submit" style="float: right" value="사진 업로드">
+				<input class="btn" type="Reset" style="float: right" value="취 소">
+			</p>
+		</form>
+	</div>
+</body>
+</html>

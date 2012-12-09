@@ -107,7 +107,7 @@ function showData(){
     			<li class="divider"></li>
     			<li><a href="userShow.jsp?id=<%=sessID%>">개인 정보</a></li>
     			<li><a href="#">위치 설정</a></li>
-    			<li><a href="#">사진 관리</a></li>
+    			<li><a href="pictureManager.jsp?id=<%=sessID%>">사진 관리</a></li>
     			<li><a href="#">이웃 관리</a></li>
     			<li><a href="#">회워 탈퇴</a></li>
     			<li class="divider"></li>

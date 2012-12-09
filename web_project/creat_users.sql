@@ -11,7 +11,10 @@ CREATE TABLE users (
 	name VARCHAR(20),
 	pwd VARCHAR(20) NOT NULL, 
 	email VARCHAR(50) UNIQUE,
-	gender CHAR(1) NOT NULL
+	gender CHAR(1) NOT NULL,
+	location VARCHAR(50),
+	location_lat double,
+	location_lon double
 );
 
 INSERT INTO users VALUES (1, 'Manager4', 'hyejung jang', '159357', 'hyejung-s@nate.com', 'F');
@@ -23,6 +26,9 @@ CREATE TABLE picture (
 	Text TEXT,
 	pictureName VARCHAR(100),
 	userid VARCHAR(15) NOT NULL,
+	location VARCHAR(50),
+	location_lat double,
+	location_lon double,
 	FOREIGN KEY(userid) REFERENCES users(userid)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE

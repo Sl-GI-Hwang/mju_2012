@@ -11,10 +11,7 @@ CREATE TABLE users (
 	name VARCHAR(20),
 	pwd VARCHAR(20) NOT NULL, 
 	email VARCHAR(50) UNIQUE,
-	gender CHAR(1) NOT NULL,
-	location VARCHAR(50),
-	location_lat double,
-	location_lon double
+	gender CHAR(1) NOT NULL
 );
 
 INSERT INTO users VALUES (1, 'Manager4', 'hyejung jang', '159357', 'hyejung-s@nate.com', 'F');
@@ -26,9 +23,6 @@ CREATE TABLE picture (
 	Text TEXT,
 	pictureName VARCHAR(100),
 	userid VARCHAR(15) NOT NULL,
-	location VARCHAR(50),
-	location_lat double,
-	location_lon double,
 	FOREIGN KEY(userid) REFERENCES users(userid)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE
@@ -48,4 +42,26 @@ CREATE TABLE comment (
 	ON UPDATE CASCADE
 );
 
+CREATE TABLE interest (
+	pictureID INT NOT NULL,
+	FOREIGN KEY(pictureID) REFERENCES picture(pictureID)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	userid VARCHAR(15) NOT NULL,
+	FOREIGN KEY(userid) REFERENCES users(userid)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	interest_flag BOOLEAN
+);
 
+CREATE TABLE neighbor (
+	userid1 VARCHAR(15) NOT NULL,
+	FOREIGN KEY(userid1) REFERENCES users(userid)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	userid2 VARCHAR(15) NOT NULL,
+	FOREIGN KEY(userid2) REFERENCES users(userid)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	neighbor_flag BOOLEAN
+);

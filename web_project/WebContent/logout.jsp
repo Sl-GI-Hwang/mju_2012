@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" name = "viewport" content = "width = device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <title>로그인</title>
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/bootstrap.min.css" rel="stylesheet">

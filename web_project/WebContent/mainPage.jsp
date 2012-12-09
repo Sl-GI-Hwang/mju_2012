@@ -23,7 +23,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" name = "viewport" content = "width = device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+
+<script src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+ 
+var address="";
+function showData(){
+		  navigator.geolocation.getCurrentPosition( success, fail );
+}
+
+ //현재 위치 정보 알아보는 메소드
+ //성공시
+ function success(position){
+  var lat=position.coords.latitude; //위도
+  var lon=position.coords.longitude; // 경도
+
+  searchAddress(lat,lon);
+ }
+ function searchAddress(lat,lon){
+	 $.ajax({
+		 url:"http://apis.daum.net/local/geo/coord2addr",
+		 type:"get",
+		 dataType:"jsonp",
+		 data:{
+			 "latitude":lat,
+			 "longitude":lon,
+			 "apikey":"3c5381bd7c05f1688d59189b76328d15319f2fee",
+			 "format":"simple",
+			 "output":"json"
+		 },
+		 timeout: 300000,
+		 
+		 success: function(req){
+			 var name1 = req.name1;
+			 var name2 = req.name2;
+			 var name3 = req.name3;
+			 
+			 if(name1){
+				 address += name1 + " ";
+			 }
+			 if(name2){
+				 address += name2 + " ";
+			 }
+			 if(name3){
+				 address += name3 + " ";
+			 }
+			 alert("위도는 "+lat+"\n경도는 "+lon+"\n주소는 \n"+address);
+		 },
+		 
+		 
+		 error:function(xhr,textStatus,errorThrown){
+			 alert("주소검색 실패-\n"+textStatus+"\n(HTTP-"+xhr.status+"/"+errorThrown+")");
+		 }
+	 
+	 
+	 });
+ }
+
+ //실패시
+ function fail(error){
+  alert("위치정보 확인 실패!"+error.message);
+ }
+ 
+</script>
+
 <title>회원 관리</title>
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -31,7 +96,7 @@
 	<script src="js/jquery-1.8.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </head>
-<body>
+<body onload="showData()">
 <div class = "header">
 	<div class = "btn-group" style=float:left>
  		 <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#">

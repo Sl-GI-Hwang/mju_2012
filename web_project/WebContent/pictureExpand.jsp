@@ -7,7 +7,8 @@
 	if(session.getAttribute("id") != null){
 		sessID = (Integer)session.getAttribute("id");
 	}  
-
+	
+  int numItems=0;
   String errorMsg = null;
 
   String actionUrl;
@@ -114,12 +115,43 @@
 </div><br/>
 	<div id = "explain">
 		클릭한 해당 사진 입니다. 
+		관심은 로그인 후 이용하실 수 있는 서비스 입니다!!
 	</div>
 	<div id = "imageExpand">
 		<p><img src ="imgFile/<%=fileName%>" alt = "사진"  style ="width:65%" style="height:65%"></p>
 		<p class="pictureInfo">
-			<div style="float:left"><img src="./imgs/star.png" alt = "관심마크" width="15" height="15">INTEREST수   
-			<button class="btn-interest" type="button">관 심</button>  </div>
+		   <%
+			   try {
+				   System.out.println(pictureId);
+				   Class.forName("com.mysql.jdbc.Driver");
+				   conn = DriverManager.getConnection(
+							"jdbc:mysql://localhost:3306/picorhood", "web", "project");
+				   stmt = conn.prepareStatement("SELECT COUNT(*) FROM interest WHERE pictureid = ?");
+				   stmt.setInt(1, pictureId);
+					rs = stmt.executeQuery();
+					rs.next();
+					numItems = rs.getInt(1);
+
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				} finally {
+				// 무슨 일이 있어도 리소스를 제대로 종료
+				if (rs != null) try{rs.close();} catch(SQLException e) {}
+				if (stmt != null) try{stmt.close();} catch(SQLException e) {}
+				if (conn != null) try{conn.close();} catch(SQLException e) {}
+				}
+			 
+			 %>
+			<div style="float:left"><img src="./imgs/star.png" alt = "관심마크" width="15" height="15">INTEREST :
+			<%=numItems %>
+			<%if(sessionID != null){ %>
+			<form action="interest.jsp" method="post">
+			<input type="hidden" value="<%=pictureId %>" name="pictureid"/>
+			<input type="hidden" value="<%=sessionID %>" name="sessionID"/>
+			<button class="btn btn-mini btn-warning" type="submit">관 심</button>
+			</form>
+			<%} %>  
+			</div>
 			 <!--  시간이랑 거리는 소스를 찾아봐야합니다. java scrip나 jsp서야할 듯? -->
 			<div style="float:right"><%=date%>   <img src="./imgs/globe_af.png" alt = "지구-거리표시아이콘" width="15" height="15">"거리"</div>
 		<%

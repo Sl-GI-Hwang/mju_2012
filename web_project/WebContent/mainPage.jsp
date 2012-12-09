@@ -80,6 +80,7 @@ function showData(){
 
 			 alert("위도는 "+lat+"\n경도는 "+lon+"\n주소는 \n"+address);
 			 
+			 send(name1,name2,name3,address,lat,lon);
 		 },
 		 
 		 
@@ -91,6 +92,22 @@ function showData(){
 	 });
  }
 
+ function send(name1,name2,name3,address,lat,lon){
+	 alert("send테스트");
+	 $.ajax({
+		 url:"insertLocation.jsp",
+		 type:"post",
+		 dataType:"json",
+		 data: {	 
+			 "name1":name1,
+			 "name2":name2,
+			 "name3":name3,
+			 "address":address,
+			 "lat":lat,
+			 "lon":lon,
+		 },
+	 });
+ }
  //실패시
  function fail(error){
   alert("위치정보 확인 실패!"+error.message);

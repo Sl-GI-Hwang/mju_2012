@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+s<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"  import="java.sql.*" import="java.util.*" 
     import="org.apache.commons.lang3.StringUtils"%>
 <%
@@ -168,7 +168,7 @@ String[][] genders = {{"M", "남성"}, {"F", "여성"}};
 				</div>
 
 				<div class="form-actions">
-					<a href="userManage.jsp" class="btn">목록으로</a>
+					<a href="loginPage.jsp" class="btn">목록으로</a>
 					
 						<input type="submit" class="btn btn-primary" value="가입"/>
 						<input type="reset" class="btn btn-danger" value="입력 취소"/>

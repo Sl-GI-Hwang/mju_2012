@@ -121,7 +121,7 @@ if(session.getAttribute("id") != null){
     // SQL 에러의 경우 에러 메시지 출력
     out.print("<div class='alert'>" + errorMsg + "</div>");%>
     <div class="form-action">
-		<a href="userManage.jsp" class="btn">목록으로</a>
+		<a href="loginPage.jsp" class="btn">목록으로</a>
 	</div>
 <% 
  } else if (result == 1){ 

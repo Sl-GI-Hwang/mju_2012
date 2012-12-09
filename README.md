@@ -1,1 +1,1 @@
-This is Web Programming ProJect
+web_project 폴더안의 파일들입니다.

@@ -142,9 +142,13 @@
 		<br/>
 		<div style="text-align:left">
 		<%while(rs.next()){ %>
-		<ul style="list-style-type:none">
-			<li> <%=rs.getString("userid")%> : <%=rs.getString("Text")%>   - <%=rs.getString("date") %></li>
-		</ul>
+		<table class = table>
+			<tbody>
+				<tr>
+					<td><%=rs.getString("userid")%> :  <%=rs.getString("Text")%> -    <%=rs.getString("date") %></td>
+				</tr>
+			</tbody>
+		</table>
 		<%}%>
 		</div>
 		<form action="comment.jsp" method="post">

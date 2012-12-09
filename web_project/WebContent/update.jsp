@@ -2,6 +2,11 @@
     pageEncoding="UTF-8" import="java.sql.*" import="java.util.*" 
     import="org.apache.commons.lang3.StringUtils"%>
 <%
+
+int sessID = 0;
+if(session.getAttribute("id") != null){
+	sessID = (Integer)session.getAttribute("id");
+}
 	// DB 접속을 위한 준비
 	Connection conn = null;
 	PreparedStatement stmt = null;
@@ -87,8 +92,30 @@ System.out.println(id);
 </head>
 <body>
 <div class = "header">
-	<span class= "menuButton"><a href="url"><img src ="imgs/menuButton.png" alt = "MenuBar"></a></span>
-	<span class = "siteName"><a href="mainPage.jsp"><img src = "imgs/SiteLogo.png" alt = "Site Logo"></a></span>
+	<div class = "btn-group" style=float:left>
+ 		 <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#">
+   			<img src ="imgs/menuButton.png" width="30" height="30" alt = "MenuBar">
+  		 </a>
+  			<ul class="dropdown-menu">
+    			<li><a href="#">MY PAGE</a></li>
+    			<li class="divider"></li>
+    			<li><a href="userShow.jsp?id=<%=sessID%>">개인 정보</a></li>
+    			<li><a href="#">위치 설정</a></li>
+    			<li><a href="pictureManager.jsp?id=<%=sessID%>">사진 관리</a></li>
+    			<li><a href="#">이웃 관리</a></li>
+    			<li><a href="#">회워 탈퇴</a></li>
+    			<li class="divider"></li>
+    			<li><a href="#">관심 위치 사진</a></li>
+    			<li class="divider"></li>
+    			<li><a href="#">주위 사진</a></li>
+    			<li class="divider"></li>
+    			<li><a href="#">이웃 사진</a></li>
+    			<li class="divider"></li> 
+    			<li><a href="userManage.jsp">회원 관리 페이지</a></li>   			
+  			</ul>
+	</div>
+	
+	<div class = "siteName" style=float:right><a href="mainPage.jsp"><img src = "imgs/SiteLogo.png" alt = "Site Logo"></a></div>
 </div>
 
 	<div id = "explain">

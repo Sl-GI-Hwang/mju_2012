@@ -87,7 +87,7 @@
 			conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
 			stmt = conn.createStatement();
 			rs = stmt
-					.executeQuery("SELECT pictureID, pictureName FROM picture WHERE userid = '" + sessionID+ "'");
+					.executeQuery("SELECT pictureID, pictureName FROM picture WHERE userid = '" + sessionID+ "' ORDER BY pictureID DESC" );
 	%>
 	<div id="photoFilter">
 		<ul style="list-style-type: none" class="thumbnalils">

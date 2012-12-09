@@ -11,25 +11,32 @@
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-	
+/*	
+	String dbLocation ="";
+	int dbLocation_lat =0;
+	int dbLocation_lon =0;
+	*/
 	String dbUrl = "jdbc:mysql://localhost:3306/picorhood";
 	String dbUser = "web";
 	String dbPassword = "project";
 	
 	
-	
-//DB 접속을 위한 준비
+
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" name = "viewport" content = "width = device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
-
 <script src="js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript">
  
 var address="";
+var name1="";
+var name2="";
+var name3="";
+var lat="";
+var lon="";
 function showData(){
 		  navigator.geolocation.getCurrentPosition( success, fail );
 }
@@ -37,8 +44,8 @@ function showData(){
  //현재 위치 정보 알아보는 메소드
  //성공시
  function success(position){
-  var lat=position.coords.latitude; //위도
-  var lon=position.coords.longitude; // 경도
+  lat=position.coords.latitude; //위도
+  lon=position.coords.longitude; // 경도
 
   searchAddress(lat,lon);
  }
@@ -57,9 +64,9 @@ function showData(){
 		 timeout: 300000,
 		 
 		 success: function(req){
-			 var name1 = req.name1;
-			 var name2 = req.name2;
-			 var name3 = req.name3;
+			 name1 = req.name1;
+			 name2 = req.name2;
+			 name3 = req.name3;
 			 
 			 if(name1){
 				 address += name1 + " ";
@@ -70,7 +77,9 @@ function showData(){
 			 if(name3){
 				 address += name3 + " ";
 			 }
+
 			 alert("위도는 "+lat+"\n경도는 "+lon+"\n주소는 \n"+address);
+			 
 		 },
 		 
 		 
@@ -87,11 +96,13 @@ function showData(){
   alert("위치정보 확인 실패!"+error.message);
  }
  
+
+ 
 </script>
 
 <title>회원 관리</title>
 	<link href="css/main.css" rel="stylesheet">
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
 	<link href="css/base.css" rel="stylesheet">
 	<script src="js/jquery-1.8.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -147,7 +158,7 @@ function showData(){
 <div id = "photoFilter">
 	<ul style="list-style-type:none" class ="thumbnalils">
 		<%while(rs.next()){ %>
-			<li class="span3"><a href="pictureExpand.jsp?pictureid=<%=rs.getInt("pictureid") %>" class="thumbnail">
+			<li class="span4"><a href="pictureExpand.jsp?pictureid=<%=rs.getInt("pictureid") %>" class="thumbnail">
 			<img src="imgFile/<%=rs.getString("pictureName") %>" alt="사진"></a></li>
 		<%} %>
 	</ul>

@@ -1,0 +1,160 @@
+/* Reset CSS: from YUI2: Reset CSS */
+html{color:#000;
+	background:#888; 
+	padding:20px 0;
+	font: 12px/18px "맑은 고딕", "Malgun Gothic", "굴림", "Gulim", Verdana, Arial, Tahoma;
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}
+del,ins{text-decoration:none;}
+li{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+q:before,q:after{content:'';}
+abbr,acronym{border:0;font-variant:normal;}
+sup{vertical-align:baseline;}
+sub{vertical-align:baseline;}
+legend{color:#000;}
+input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}
+input,button,textarea,select{font-size:100%;}
+
+/* Basic */
+h1 {font-size:14px; line-height:28px; font-weight:bold;}
+h2 {font-size:12px; line-height:24px; font-weight:bold;}
+a:visited, a:link {color:#c20A00;text-decoration:none;}
+a:hover, a:active {color:#C23700;}
+
+/* layout */
+#wrap {width:960px; margin:0 auto; background-color:#888}
+
+/*  -- top -- */
+#top { 
+	width:950px; color:#eee; 
+	padding:0 10px 15px 0;
+	text-align:right; font-weight:bold;
+}
+#top a {color:#eee;text-decoration:none;padding:5px;}
+#top a:hover {background-color: yellow;}
+
+/*  -- header -- */
+#header {
+	width:100%; height:135px; background-color:#03497d;
+	border-bottom: 1px solid #999;
+	
+	/* 외곽선 둥글게 만들기, IE지원 안함 */
+	-moz-border-radius-topleft: 15px;
+	-moz-border-radius-topright: 15px;
+	border-radius: 15px 15px 0 0;
+}
+#header_top {height:100px; }
+#header_left{
+	width: 500px; float:left;display:inline; color:#FFF;
+	padding:10px;
+}
+#header_right{width:400px;float:right;text-align:right;display:inline; padding:40px 30px 0 0;}
+#line {width:960px; height:5px;background-color:#94c713;}
+
+
+/* -- search -- */
+#search {
+	background: #fff url("../images/search-bg.gif") no-repeat 2px center;
+	border: 1px solid #000;
+	width:280px; font-size:14px; line-height:24px; height:24px;
+	padding-left:22px; vertical-align: middle;
+}
+#search_button {height:28px; font-size:14px; 
+  line-height:24px; padding:5px;vertical-align: middle;
+}
+
+/* -- content -- */
+#content {background:#fff; overflow:auto; padding:0;}
+#main_content { width:700px; float:left; padding:10px; background:#fff;}
+#sub_content { width:240px; float:right;padding:0;background-color:#ddd;height:100%;}
+
+/* -- footer -- */
+#footer {background-color:#d5dde2; color:#888; text-align:center; padding: 20px;}
+
+
+/* -- navigation -- */
+#navbar {width:960px; height:30px;background-color:#03497d;}
+#navbar ul {margin:0;padding:0;}
+#navbar ul li {float:left;}
+#navbar ul li a{
+	color:#fff; background-color:#4682b4;
+	display:block;
+	width:120px;
+	text-align:center;
+	padding:0px 10px; 
+	font: bold 12px/30px Tahoma;
+	text-decoration:none;
+	margin-right:1px;
+}
+#navbar ul li a.selected {background-color:#94c713;}
+#navbar ul li a:hover {background-color:#709647;}
+
+/*---------------------------------*/
+#main_content div.section_3, #main_content div.section_1 {
+	width:700px;
+	margin-bottom:20px;
+	border: 1px solid #d7e9f9;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	overflow:auto;
+}
+
+#main_content div.section_3 h1, #main_content div.section_1 h1{
+	width:650px;
+	padding: 4px 6px 4px 44px;
+	background: #d7e9f9;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-radius: 5px 5px 0 0;
+}
+
+#main_content #new_spot h1 { 
+  background: #d7e9f9 url("../images/logo_cal.png") no-repeat 4px center; 
+}
+#main_content #new_review h1 { 
+  background: #d7e9f9 url("../images/logo_doc.png") no-repeat 4px center; 
+}
+#main_content #special_review h1 { 
+  background: #d7e9f9 url("../images/logo_photo.png") no-repeat 4px center; 
+}
+
+#main_content div.section_3 li { 
+	width: 220px; display:block; float:left; margin:5px; 
+}
+div.section_3 li img { float:left;}
+
+#main_content div.section_1 li { 
+	width: 690px; display:block; float:left; margin:5px; 
+}
+div.section_1 li img { float:left;}
+/*---------------------------------*/
+#sub_content div.section {
+	width:240px;
+	margin-bottom:10px;
+	background: #eee;
+	overflow:auto;
+}
+
+#sub_content div.section h1 {
+	width:190px;
+	padding: 4px 6px 4px 44px;
+	background: #7BA191;
+	color:#fff;
+}
+#sub_content #spot_ranking h1 { background: #7BA191 url("../images/logo_camera.png") no-repeat 4px center; }
+#sub_content #qna h1 { background: #7BA191 url("../images/logo_ink.png") no-repeat 4px center; }
+
+#sub_content div.section li {
+	width: 220px;
+	display:block;
+	float:left;
+	margin:5px;
+}
+
+#sub_content div.section li img { float:left;}
+

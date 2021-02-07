@@ -1,0 +1,176 @@
+html{color:#000;
+	background-image: url('./imgs/BGimage.PNG');
+	font: 12px/18px "맑은 고딕", "Malgun Gothic", "굴림", "Gulim", Verdana, Arial, Tahoma;
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+form{ margin: 20px;}
+
+/*=================================사진 올리는 페이지=====================================================*/
+/*버튼꾸미기 DEFAULT */
+/*
+.btn{
+  background-color: hsl(145, 62%, 68%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cdf3dd", endColorstr="#7adfa4");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#cdf3dd), to(#7adfa4));
+  background-image: -moz-linear-gradient(top, #cdf3dd, #7adfa4);
+  background-image: -ms-linear-gradient(top, #cdf3dd, #7adfa4);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cdf3dd), color-stop(100%, #7adfa4));
+  background-image: -webkit-linear-gradient(top, #cdf3dd, #7adfa4);
+  background-image: -o-linear-gradient(top, #cdf3dd, #7adfa4);
+  background-image: linear-gradient(#cdf3dd, #7adfa4);
+  border-color: #7adfa4 #7adfa4 hsl(145, 62%, 63%);
+  color: #333 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.33);
+  -webkit-font-smoothing: antialiased;
+}
+*/
+/*버튼 정렬*/
+p.mainbutton{float: right; margin: 5px 5px ;}
+/*header : 메뉴바 , 사이트 이름 이 있는 id*/
+#header {float: both; height : 50px; margin: 0 auto; background-image: url('./imgs/topBGimage.PNG');}
+/*menuButton : 메뉴 버튼*/
+#menuButton{float: left; padding: 10px 0px 10px 15px;}
+#siteName{float: right; padding: 12px 0px 10px 0px;}
+/**/ 
+#line { height:5px; background-image: url('./imgs/lineimage.PNG');}
+/*login : log in 버튼과 회원 가입 버튼이 있는 id*/
+#login { background-image: url('./imgs/BGimage.PNG');}
+/*logout : 사진 업로드 버튼과 log out 버튼이 있는 id*/
+#logout {float: both; background-image: url('./imgs/BGimage.PNG');}
+/*explan : 페이지에 대한 설명 */
+#explain { float: both; height:50px; font-size: 12px; background-image: url('./imgs/BGimage.PNG');}
+/*imageLoad : 사진 업로드하는 id*/
+#imageLoad {float: left; background-image: url('./imgs/BGimage.PNG');}
+
+/*=================================사진 정렬 CSS =====================================================*/
+#photoFilter {float:left; background-image: url('./img/BGimage.PNG');}
+p.photoFilter .style {
+  background: url() no-repeat center;
+  background-size: 100% 100%;
+  -webkit-background-size: 100% 100%;
+  width: 75px;
+  height: 75px;
+}
+i.photoFilter .hyper {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+/*=================================사진 확대된 페이지=====================================================*/
+/*관심 버튼 꾸미기*/
+.btn-interest {
+   background-color: hsl(86, 79%, 44%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#daf6b5", endColorstr="#7cc817");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#daf6b5), to(#7cc817));
+  background-image: -moz-linear-gradient(top, #daf6b5, #7cc817);
+  background-image: -ms-linear-gradient(top, #daf6b5, #7cc817);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #daf6b5), color-stop(100%, #7cc817));
+  background-image: -webkit-linear-gradient(top, #daf6b5, #7cc817);
+  background-image: -o-linear-gradient(top, #daf6b5, #7cc817);
+  background-image: linear-gradient(#daf6b5, #7cc817);
+  border-color: #7cc817 #7cc817 hsl(86, 79%, 34%);
+  color: #333 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.66);
+  -webkit-font-smoothing: antialiased;
+}
+/*imageExpand : 사진 확대하는 페이지의 id*/
+#imageExpand {float: both; text-align: center;}
+/*class - reply : 댓글 부분의 문단의 클래스*/
+p.pictureInfo{text-align: center;}
+
+/*==================================================================*/
+.control-group {
+  margin-bottom: 10px;
+}
+legend + .control-group {
+  margin-top: 20px;
+  -webkit-margin-top-collapse: separate;
+}
+.form-horizontal .control-group {
+  margin-bottom: 20px;
+  *zoom: 1;
+}
+.form-horizontal .control-group:before,
+.form-horizontal .control-group:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.form-horizontal .control-group:after {
+  clear: both;
+}
+.form-horizontal .control-label {
+  float: left;
+  width: 50px;
+  padding-top: 5px;
+  text-align: right;
+}
+.form-horizontal .controls {
+  *display: inline-block;
+  *padding-left: 20px;
+  margin-left: 70px;
+  *margin-left: 0;
+}
+.form-horizontal .controls:first-child {
+  *padding-left: 180px;
+}
+
+
+/*패스워드와 아이디 텍스트 칸 그리고 textarea 꾸미기--->chrom에서 효과..남...*/
+input[type="text"], input[type="password"], textarea{
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border linear .2s, box-shadow linear .2s;
+  -moz-transition: border linear .2s, box-shadow linear .2s;
+  -o-transition: border linear .2s, box-shadow linear .2s;
+  transition: border linear .2s, box-shadow linear .2s;
+}
+
+/* 각 폼을 눌렀을 때 나타나는 겉에 색*/
+input[type="text"]:focus,
+input[type="password"]:focus, textarea:focus{
+  border-color: rgba(82, 168, 236, 0.8);
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+}
+
+/*text 박스랑 password 부분 길이랑 박스 모양*/
+input[type="text"],
+input[type="password"]{
+  display: inline-block;
+  height: 18px;
+  padding: 4px 6px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #555555;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+/*textarea 박스 모양*/
+textarea {
+  display: inline-block;
+  width: 98%;
+  padding: 1%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #555555;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
